@@ -28,18 +28,21 @@ export const Logo =styled.a`
     background-size: contain;
 `
 export const Nav=styled.div`
-    width: 960px;
+    position: relative;
+    width: 1100px;
     height: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
     vertical-align: middle;
-    justify-content: space-between;
-
+    .title{
+        display: flex;
+                
+    }
     a{
         display: block;
         list-style: none;      
-        padding: 8px;   
+        padding: 20px;   
         color: #333;
         display: flex;
         &.active{
@@ -50,11 +53,22 @@ export const Nav=styled.div`
             font-size: 20px;
         }
     }
+    .slide-enter{
+        transition: all 0.2s ease-out;
+    }
+    .slide-enter-active{
+        width: 220px;
+    }
+    .slide-exit{
+        transition: all .2s ease-out;
+    }
+    .slide-exit-active{
+        width: 160px;
+    }
     .search{
         position: relative;
-        
-    }
-    input{
+        margin-left: 20px;  
+        input{
         width: 160px;
         padding: 0 40px 0 20px ;
         height: 38px;
@@ -67,8 +81,11 @@ export const Nav=styled.div`
         &::placeholder{
             color: #999;
         }
+        &.focused{
+            width: 220px;
+        }
     }
-    .searchicon{
+        .searchicon{ 
         position: absolute;
         top: 5px;
         right: 5px;
@@ -78,6 +95,61 @@ export const Nav=styled.div`
         border-radius: 20px;
         text-align: center;
         color: #969696;
+        &.focused{
+            background-color: #777;
+            color: #fff;
+        }
+        
+    }
+        .searchinfo{
+            position: absolute;
+            left: 0;
+            width: 250px;
+            top: 56px;
+            padding:  0 20px;
+            background-color: #ffffff;
+            box-shadow:  0 0 8px rgba(0,0,0,.2);
+            .infotitle{
+                margin-top: 20px;
+                margin-bottom: 15px;
+                line-height: 20px;
+                font-size: 14px;
+                color: #333;
+                .change{
+                    float: right;
+                    font-size: 12px;
+                }
+            }
+            .titleitem{
+                display: flex;
+                flex-wrap:  wrap;
+                .item{
+                    padding: 0 5px;
+                    font-size: 14px;
+                    line-height: 20px;
+                    margin-right: 10px;
+                    margin-bottom: 15px;
+                    border:  1px solid #ddd;
+                    border-radius: 2px;
+                    color: #969696;
+
+                }
+
+
+            }
+        } 
+    }
+    
+    .nav-right{
+        padding-left: 60px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 20px;
+    }
+    
+    .right{
+        margin: 0 10px;
     }
     
     .icon{
