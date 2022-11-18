@@ -11,7 +11,7 @@ import{
 }from './style'
 class Header extends Component{
     getListArea(){
-        const {focused,list ,page,mouseIn, handleMouseEnter,handleMouseLeave} =this.props;
+        const {focused,list ,page, totalPage,mouseIn, handleMouseEnter,handleMouseLeave,handleChangePage} =this.props;
         const newList = list.toJS();
         const pageList = [];
 
@@ -27,7 +27,7 @@ class Header extends Component{
                      onMouseLeave={handleMouseLeave}
                 >
                 <div className="infotitle">热门话题
-                    <span className="change">换一换</span>
+                    <span className="change" onClick={()=>handleChangePage(page,totalPage)}>换一换</span>
                 </div>
                 <div className="titleitem">
                     {pageList}
@@ -105,7 +105,8 @@ const mapStateToProps =(state) =>{
         focused:state.getIn(['header','focused']),
         list:state.getIn(['header','list']),
         page:state.getIn(['header','page']),
-        mouseIn:state.getIn(['header','mouseIn'])
+        mouseIn:state.getIn(['header','mouseIn']),
+        totalPage:state.getIn(['header','totalPage'])
         
     }
 }
@@ -128,6 +129,14 @@ const mapDispathToProps = (dispatch) =>{
         },
         handleMouseLeave(){
             dispatch(actionCreators.mouseLeave())
+        },
+        handleChangePage(page,totalPage){
+            if(page< totalPage){
+                dispatch(actionCreators.changePage(page +1))
+            }else{
+                dispatch(actionCreators.changePage(1))
+            }
+            
         }
 
     }

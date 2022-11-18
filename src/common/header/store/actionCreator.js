@@ -15,6 +15,11 @@ export const mouseEnter =() =>({
 export const mouseLeave =() =>({
   type:constans.MOUSER_LEAVE
 })
+export const changePage =(page) =>({
+  type:constans.CHANGE_PAGE,
+  page
+})
+ 
 
 const changeList =(data) =>({
   type: constans.CHANGE_LIST,
