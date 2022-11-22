@@ -29,7 +29,10 @@ export default (state = defaultState,action) =>{
     case constans.SEARCH_BLUR:
       return state.set('focused',false)
     case constans.CHANGE_LIST:
-      return state.set('list',action.data).set('totalPage',action.totalPage)
+      return state.merge({
+        list:action.data,
+        totalPage:action.totalPage
+      })
     case constans.MOUSER_ENTER:
       return state.set('mouseIn',true)
     case constans.MOUSER_LEAVE:

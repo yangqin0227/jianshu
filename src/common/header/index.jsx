@@ -13,13 +13,15 @@ class Header extends Component{
     getListArea(){
         const {focused,list ,page, totalPage,mouseIn, handleMouseEnter,handleMouseLeave,handleChangePage} =this.props;
         const newList = list.toJS();
-        const pageList = [];
+       
 
-        for(let i=(page-1)*10;i<page*10;i++){
-            pageList.push(
-                <div className='item' key={newList[i]}>{newList[i]}</div>
-            )
-        }
+        // for(let i=(page-1)*10;i<page*10;i++){
+        //     pageList.push(
+        //         <div className='item' key={newList[i]}>{newList[i]}</div>
+        //     )
+        // }
+        const dateList = newList.slice((page-1)*10,page*10)
+       
         if(focused || mouseIn){
             return(
                 <div className="searchinfo" 
@@ -30,7 +32,12 @@ class Header extends Component{
                     <span className="change" onClick={()=>handleChangePage(page,totalPage)}>换一换</span>
                 </div>
                 <div className="titleitem">
-                    {pageList}
+                    {
+                        dateList.map((c,index) =>(
+                            <div className="item" key={index}>{c}</div>
+                        ))
+                        
+                    }
                 </div>
             </div>
             )
@@ -39,7 +46,7 @@ class Header extends Component{
         }
     }
     render(){
-        const {focused,handlInputeBlur,handleInputFocus}=this.props
+        const {focused,handlInputeBlur,handleInputFocus ,list}=this.props
         return(
             <HeaderDiv>
                 <HeaderWrapper>
@@ -73,7 +80,7 @@ class Header extends Component{
                                 <>
                                 <input  placeholder="搜索" 
                                         className={focused?'focused':''}
-                                        onFocus={handleInputFocus}
+                                        onFocus={()=> handleInputFocus(list)}
                                         onBlur={handlInputeBlur}                                                                              
                                     >  
                                     </input>
@@ -113,12 +120,12 @@ const mapStateToProps =(state) =>{
 const mapDispathToProps = (dispatch) =>{
     return{
         // 方法都写在dispatch中 数据修改需要通过action ，然后dispach派发
-        handleInputFocus(){          
+        handleInputFocus(list){          
         //    const action ={
         //     type:'search_focus'
         //    };
         //    dispatch(action)
-            dispatch(actionCreators.getList());
+            (list.size===0) && dispatch(actionCreators.getList());
             dispatch(actionCreators.searchFocus());
         },
         handlInputeBlur(){
