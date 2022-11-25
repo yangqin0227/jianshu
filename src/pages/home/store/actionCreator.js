@@ -36,5 +36,5 @@ export const getList =() =>{
     }).catch(() =>{
       console.log('error')
     })
-  } 
+  }
 }

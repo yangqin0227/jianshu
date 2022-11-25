@@ -39,6 +39,9 @@ export const Nav=styled.div`
         display: flex;
                 
     }
+    .text{
+        text-decoration:none
+    }
     a{
         display: block;
         list-style: none;      

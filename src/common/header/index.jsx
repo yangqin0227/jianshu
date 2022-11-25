@@ -1,7 +1,8 @@
 import React,  { Component}from "react";
 import { connect } from "react-redux/es/exports";
 import { CSSTransition } from "react-transition-group";
-import  {actionCreators} from './store'
+import  {actionCreators} from './store';
+import { Link } from "react-router-dom";
 import{
     HeaderDiv,
     HeaderWrapper,
@@ -53,22 +54,22 @@ class Header extends Component{
                     <Logo href="/"/>
                     <Nav>
                         <div className="title">
-                            <a className="active">
+                            <Link className="active text" to={'/home'}>
                                 <span className="iconfont">&#xe8af;</span>
                                 <div>首页 </div>
-                            </a>
-                            <a>
+                            </Link>
+                            <Link className="text" to={'/download'}>
                                 <span className="iconfont">&#xebb4;</span>
                                 <div>下载 </div>
-                            </a>
-                            <a>
+                            </Link>
+                            <Link className="text" to={'/vip'}>
                                 <span className="iconfont">&#xe8b1;</span>
                                 <div>会员</div>
-                            </a>
-                            <a>
+                            </Link>
+                            <Link className="text" to={'/it'}>
                                 <span className="iconfont">&#xe6b9;</span>
                                 <div>IT技术</div>
-                            </a>
+                            </Link>
 
                         </div>                          
                         <div className="search">
